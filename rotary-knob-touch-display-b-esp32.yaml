@@ -1,0 +1,29 @@
+esphome:
+  name: "rotary-knob-touch-display-b"
+
+esp32:
+  # ESP32-U4WDH (revision v3.1)
+  # Wi-Fi, BT, Dual Core + LP Core, 240MHz, Embedded Flash, Vref calibration in eFuse, Coding Scheme None
+  # flash size: 4MB
+  variant: esp32
+  cpu_frequency: 240MHz
+  flash_size: 4MB
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+
+ota:
+  platform: esphome
+  password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  min_auth_mode: WPA2
+  manual_ip:
+    static_ip: !secret ipv4_static_ip_b
+    gateway: !secret ipv4_gateway
+    subnet: !secret ipv4_subnet
