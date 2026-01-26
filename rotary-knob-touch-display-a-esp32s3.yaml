@@ -29,6 +29,8 @@ wifi:
     subnet: !secret ipv4_subnet
 
 i2c:
-  sda: GPIO11
-  scl: GPIO12
-  scan: true
+  - id: i2c_gpio11
+    sda: GPIO11
+    scl: GPIO12
+    scan: true
+    # devices: 0x15, 0x5A
