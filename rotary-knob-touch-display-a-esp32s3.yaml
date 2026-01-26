@@ -34,3 +34,14 @@ i2c:
     scl: GPIO12
     scan: true
     # devices: 0x15, 0x5A
+
+output:
+  - id: output_gpio47
+    platform: ledc
+    pin: GPIO47
+
+light:
+  - id: light_lcd_backlight
+    platform: monochromatic
+    output: output_gpio47
+    restore_mode: ALWAYS_ON
