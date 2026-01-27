@@ -35,6 +35,14 @@ i2c:
     scan: true
     # devices: 0x15, 0x5A
 
+sensor:
+  - id: sensor_battery_gpio01
+    platform: adc
+    pin: GPIO1
+    attenuation: 12db
+    filters:
+      multiply: 2
+
 output:
   - id: output_gpio47
     platform: ledc
