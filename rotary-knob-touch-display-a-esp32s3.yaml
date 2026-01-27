@@ -47,6 +47,24 @@ sensor:
     filters:
       multiply: 2
 
+binary_sensor:
+  - id: sensor_rotary_knob_ccw_gpio07
+    platform: gpio
+    pin:
+      number: GPIO7
+      inverted: true
+    on_release:
+      lambda: |-
+        ESP_LOGD("sensor_rotary_knob_ccw_gpio07", "rotate counter-clockwise");
+  - id: sensor_rotary_knob_cw_gpio08
+    platform: gpio
+    pin:
+      number: GPIO8
+      inverted: true
+    on_release:
+      lambda: |-
+        ESP_LOGD("sensor_rotary_knob_cw_gpio08", "rotate clockwise");
+
 output:
   - id: output_gpio47
     platform: ledc
