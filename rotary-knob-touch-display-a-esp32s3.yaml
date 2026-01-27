@@ -56,6 +56,23 @@ spi:
       - GPIO17
       - GPIO18
 
+touchscreen:
+  - id: touchscreen_i2c_gpio11_0x15
+    platform: cst816 # CST816D
+    interrupt_pin: GPIO9
+    reset_pin: GPIO10
+    i2c_id: i2c_gpio11 # device 0x15
+    display: display_gpio14
+    transform:
+      mirror_x: true # display rotation 180
+      mirror_y: true # display rotation 180
+      swap_xy: false
+    on_update:
+      lambda: |-
+        for (auto touch: touches)  {
+          ESP_LOGD("touchscreen_gpio9", "on_update id=%d state=%d x=%d, y=%d", touch.id, touch.state, touch.x, touch.y);
+        }
+
 display:
   - id: display_gpio14
     show_test_card: true
