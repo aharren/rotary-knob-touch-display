@@ -9,4 +9,4 @@ cd "${VENV_ROOT}"
 python3 -m venv esphome
 source "${VENV_ROOT}/esphome/bin/activate"
 
-pip3 install esphome==2025.12.7
+pip3 install esphome==2026.1.2
