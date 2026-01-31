@@ -32,6 +32,28 @@ wifi:
     gateway: !secret ipv4_gateway
     subnet: !secret ipv4_subnet
 
+uart:
+  - id: uart_interlink_gpio38
+    tx_pin: GPIO38
+    rx_pin: GPIO48
+    baud_rate: 115200
+    debug:
+      direction: RX
+      dummy_receiver: true
+      after:
+        delimiter: "\n"
+      sequence:
+        - lambda: |-
+            UARTDebug::log_string(direction, bytes);
+
+interval:
+  - interval: 60s
+    startup_delay: 30s
+    then:
+      - uart.write:
+          id: uart_interlink_gpio38
+          data: "PING\n"
+
 i2c:
   - id: i2c_gpio11
     sda: GPIO11

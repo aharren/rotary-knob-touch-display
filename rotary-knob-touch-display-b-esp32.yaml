@@ -28,6 +28,27 @@ wifi:
     gateway: !secret ipv4_gateway
     subnet: !secret ipv4_subnet
 
+uart:
+  - id: uart_interlink_gpio23
+    tx_pin: GPIO23
+    rx_pin: GPIO18
+    baud_rate: 115200
+    debug:
+      direction: RX
+      dummy_receiver: true
+      after:
+        delimiter: "\n"
+      sequence:
+        - lambda: |-
+            UARTDebug::log_string(direction, bytes);
+
+interval:
+  - interval: 60s
+    then:
+      - uart.write:
+          id: uart_interlink_gpio23
+          data: "PONG\n"
+
 binary_sensor:
   - id: sensor_rotary_knob_cw_gpio19
     platform: gpio
