@@ -27,10 +27,6 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
   min_auth_mode: WPA2
-  manual_ip:
-    static_ip: !secret ipv4_static_ip_a
-    gateway: !secret ipv4_gateway
-    subnet: !secret ipv4_subnet
 
 uart:
   - id: uart_interlink_gpio38
