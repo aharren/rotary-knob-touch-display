@@ -63,7 +63,7 @@ sensor:
     pin: GPIO1
     attenuation: 12db
     filters:
-      multiply: 2
+      - multiply: 2
 
 binary_sensor:
   - id: sensor_rotary_knob_cw_gpio08
@@ -72,16 +72,16 @@ binary_sensor:
       number: GPIO8
       inverted: true
     on_release:
-      lambda: |-
-        ESP_LOGD("sensor_rotary_knob_cw_gpio08", "rotate clockwise");
+      - lambda: |-
+          ESP_LOGD("sensor_rotary_knob_cw_gpio08", "rotate clockwise");
   - id: sensor_rotary_knob_ccw_gpio07
     platform: gpio
     pin:
       number: GPIO7
       inverted: true
     on_release:
-      lambda: |-
-        ESP_LOGD("sensor_rotary_knob_ccw_gpio07", "rotate counter-clockwise");
+      - lambda: |-
+          ESP_LOGD("sensor_rotary_knob_ccw_gpio07", "rotate counter-clockwise");
 
 output:
   - id: output_gpio47
@@ -116,10 +116,10 @@ touchscreen:
       mirror_y: true # display rotation 180
       swap_xy: false
     on_update:
-      lambda: |-
-        for (auto touch: touches)  {
-          ESP_LOGD("touchscreen_gpio9", "on_update id=%d state=%d x=%d, y=%d", touch.id, touch.state, touch.x, touch.y);
-        }
+      - lambda: |-
+          for (auto touch: touches)  {
+            ESP_LOGD("touchscreen_gpio9", "on_update id=%d state=%d x=%d, y=%d", touch.id, touch.state, touch.x, touch.y);
+          }
 
 display:
   - id: display_gpio14

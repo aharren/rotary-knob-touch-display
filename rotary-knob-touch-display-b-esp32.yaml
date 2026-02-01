@@ -52,14 +52,13 @@ binary_sensor:
       number: GPIO19
       inverted: true
     on_release:
-      lambda: |-
-        ESP_LOGD("sensor_rotary_knob_cw_gpio19", "rotate clockwise");
+      - lambda: |-
+          ESP_LOGD("sensor_rotary_knob_cw_gpio19", "rotate clockwise");
   - id: sensor_rotary_knob_ccw_gpio22
     platform: gpio
     pin:
       number: GPIO22
       inverted: true
     on_release:
-      lambda: |-
-        ESP_LOGD("sensor_rotary_knob_ccw_gpio22", "rotate counter-clockwise");
-
+      - lambda: |-
+          ESP_LOGD("sensor_rotary_knob_ccw_gpio22", "rotate counter-clockwise");
