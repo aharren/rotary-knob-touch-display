@@ -44,7 +44,7 @@ uart:
 
 interval:
   - interval: 60s
-    startup_delay: 30s
+    startup_delay: 120s
     then:
       - uart.write:
           id: uart_interlink_gpio38
