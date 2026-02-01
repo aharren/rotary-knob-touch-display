@@ -39,14 +39,12 @@ uart:
       sequence:
         - lambda: |-
             UARTDebug::log_string(direction, bytes);
-
-interval:
-  - interval: 60s
-    startup_delay: 130s
-    then:
-      - uart.write:
-          id: uart_interlink_gpio23
-          data: "PONG\n"
+        - lambda: |-
+            std::string s(bytes.begin(), bytes.end());
+            if (s == "PING\n") {
+              ESP_LOGD("uart_interlink_gpio23", "PING received, sending PONG");
+              id(uart_interlink_gpio23).write_array((const uint8_t*)"PONG\n", 5);
+            }
 
 binary_sensor:
   - id: sensor_rotary_knob_cw_gpio19

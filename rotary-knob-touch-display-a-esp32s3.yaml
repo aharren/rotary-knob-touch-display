@@ -41,14 +41,19 @@ uart:
       sequence:
         - lambda: |-
             UARTDebug::log_string(direction, bytes);
+        - lambda: |-
+            std::string s(bytes.begin(), bytes.end());
+            if (s == "PONG\n") {
+              ESP_LOGD("uart_interlink_gpio38", "PONG received");
+            }
 
 interval:
   - interval: 60s
-    startup_delay: 120s
+    startup_delay: 30s
     then:
-      - uart.write:
-          id: uart_interlink_gpio38
-          data: "PING\n"
+      - lambda: |-
+          ESP_LOGD("uart_interlink_gpio38", "sending PING");
+          id(uart_interlink_gpio38).write_array((const uint8_t*)"PING\n", 5);
 
 i2c:
   - id: i2c_gpio11
